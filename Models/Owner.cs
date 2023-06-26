@@ -8,6 +8,8 @@ namespace dotNetPokemon.Models
 
 		public string Gym { get; set; }
 
+		public Country Country { get; set; }
+
 	}
 
 }

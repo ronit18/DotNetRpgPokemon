@@ -8,6 +8,8 @@ namespace dotNetPokemon.Models
 
 		public DateTime BirthDay { get; set; }
 
+		public ICollection<Review> Reviews { get; set; }
+
 	}
 
 }
