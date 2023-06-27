@@ -1,4 +1,4 @@
-﻿namespace dotNetPokemon.Models
+﻿namespace DotNetRpgPokemon.Models
 {
     public class PokemonOwner
     {
