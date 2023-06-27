@@ -1,9 +1,9 @@
-﻿using dotNetPokemon.Models;
+﻿using DotNetRpgPokemon.Models;
 using Microsoft.EntityFrameworkCore;
 
 
 
-namespace dotNetPokemon.Data
+namespace DotNetRpgPokemon.Data
 {
 	public class DataContext : DbContext
 
@@ -28,8 +28,9 @@ namespace dotNetPokemon.Data
 		public DbSet<Review> Reviews { get; set; }
 
 		public DbSet<Reviewer> Reviewers { get; set; }
+        public object Pokemons { get; internal set; }
 
-		protected override void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<PokemonCategory>()
 					.HasKey(pc => new { pc.PokemonId, pc.CategoryId });
