@@ -1,7 +1,7 @@
-using dotNetPokemon.Data;
-using dotNetPokemon.Models;
+using DotNetRpgPokemon.Data;
+using DotNetRpgPokemon.Models;
 
-namespace dotNetPokemon
+namespace DotNetRpgPokemon
 {
 	public class Seed
 	{
