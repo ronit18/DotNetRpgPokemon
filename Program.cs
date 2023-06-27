@@ -1,5 +1,7 @@
-using dotNetPokemon.Data;
-using dotNetPokemon;
+using DotNetRpgPokemon.Data;
+using DotNetRpgPokemon;
+using DotNetRpgPokemon.Interfaces;
+using DotNetRpgPokemon.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 builder.Services.AddTransient<Seed>();
+
+builder.Services.AddScoped<IPokemonRepository, PokemonRepository>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
