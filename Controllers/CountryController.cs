@@ -8,29 +8,29 @@ namespace DotNetRpgPokemon.Controllers
 {
 	[Route("api/[controller]")]
 	[ApiController]
-	public class CategoryController : Microsoft.AspNetCore.Mvc.Controller
+	public class CountryController : Microsoft.AspNetCore.Mvc.Controller
 	{
-		private readonly ICategoryRepository _categoryRepository;
+		private readonly ICountryRepository _countryRepository;
 		private readonly IMapper _mapper;
-		public CategoryController(ICategoryRepository categoryRepository, IMapper mapper)
+		public CountryController(ICountryRepository countryRepository, IMapper mapper)
 		{
-			_categoryRepository = categoryRepository;
+			_countryRepository = countryRepository;
 			_mapper = mapper;
 		}
 
 		[HttpGet]
-		[ProducesResponseType(200, Type = typeof(IEnumerable<Category>))]
+		[ProducesResponseType(200, Type = typeof(IEnumerable<Country>))]
 		[ProducesResponseType(400)]
 		[ProducesResponseType(500)]
-		public IActionResult GetCategories()
+		public IActionResult GetCountries()
 		{
 			try
 			{
-				var Categories = _mapper.Map<List<CategoryDto>>(_categoryRepository.GetCategories());
+				var countries = _mapper.Map<List<CountryDto>>(_countryRepository.GetCountries());
 				if (!ModelState.IsValid)
 					return BadRequest(ModelState);
 
-				return Ok(Categories);
+				return Ok(countries);
 			}
 			catch (Exception ex)
 			{
@@ -39,24 +39,24 @@ namespace DotNetRpgPokemon.Controllers
 			}
 		}
 
-		[HttpGet("{categoryId}")]
+		[HttpGet("{countryId}")]
 		[ProducesResponseType(200, Type = typeof(Category))]
 		[ProducesResponseType(400)]
 		[ProducesResponseType(404)]
 		[ProducesResponseType(500)]
-		public IActionResult GetCategory(int categoryId)
+		public IActionResult GetCountry(int countryId)
 		{
 			try
 			{
-				if (!_categoryRepository.CategoryExists(categoryId))
+				if (!_countryRepository.CountryExists(countryId))
 					return NotFound();
 
-				var category = _mapper.Map<CategoryDto>(_categoryRepository.CategoryExists(categoryId));
+				var country = _mapper.Map<CountryDto>(_countryRepository.CountryExists(countryId));
 
 				if (!ModelState.IsValid)
 					return BadRequest(ModelState);
 
-				return Ok(category);
+				return Ok(country);
 			}
 			catch (Exception ex)
 			{
@@ -65,25 +65,21 @@ namespace DotNetRpgPokemon.Controllers
 			}
 		}
 
-		[HttpGet("pokemon/{categoryId}")]
-		[ProducesResponseType(200, Type = typeof(IEnumerable<Category>))]
+		[HttpGet("owners/{ownerId}")]
+		[ProducesResponseType(200, Type = typeof(Country))]
 		[ProducesResponseType(400)]
 		[ProducesResponseType(404)]
 		[ProducesResponseType(500)]
-		public IActionResult GetPokemonByCategory(int categoryId)
+		public IActionResult GetCountryByOwner(int ownerId)
 		{
 			try
 			{
-				if (!_categoryRepository.CategoryExists(categoryId))
-					return NotFound();
-
-				var pokemons = _mapper.Map<List<PokemonDto>>(_categoryRepository.GetPokemonByCategory
-				(categoryId));
+				var country = _mapper.Map<CountryDto>(_countryRepository.GetCountryByOwner(ownerId));
 
 				if (!ModelState.IsValid)
 					return BadRequest(ModelState);
 
-				return Ok(pokemons);
+				return Ok(country);
 
 			}
 			catch (Exception ex)

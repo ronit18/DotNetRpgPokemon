@@ -12,6 +12,7 @@ namespace DotNetRpgPokemon.Helper
 
 			CreateMap<Category, CategoryDto>();
 
+			CreateMap<Country, CountryDto>();
 		}
 
 	}
